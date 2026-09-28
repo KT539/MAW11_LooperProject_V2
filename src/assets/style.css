@@ -1,0 +1,418 @@
+/* ==========================================================================
+   Looper — feuille de style réduite
+   Extraite de l'ancien bundle Rails (normalize + Milligram + Font Awesome
+   + styles du projet). Seules les règles utilisées par src/pages sont gardées.
+   ========================================================================== */
+
+
+/* 1. Base (normalize + Milligram)
+   ========================================================================== */
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px : toutes les tailles en rem en dépendent */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: #606c76;
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.6em;
+  font-weight: 300;
+  letter-spacing: .01em;
+  line-height: 1.6;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 4.6rem;
+  font-weight: 300;
+  letter-spacing: -.1rem;
+  line-height: 1.2;
+  margin-bottom: 2.0rem;
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: #9b4dca;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:focus,
+a:hover {
+  color: #606c76;
+}
+
+img {
+  border-style: none;
+  max-width: 100%;
+}
+
+ul {
+  list-style: circle inside;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.button,
+button,
+li {
+  margin-bottom: 1.0rem;
+}
+
+form,
+p,
+table,
+ul {
+  margin-bottom: 2.5rem;
+}
+
+
+/* 2. Formulaires
+   ========================================================================== */
+
+button,
+input,
+select {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+}
+
+input,
+select {
+  margin-bottom: 1.5rem;
+}
+
+.button,
+button,
+input[type='submit'] {
+  -webkit-appearance: button;
+  background-color: #9b4dca;
+  border: 0.1rem solid #9b4dca;
+  border-radius: .4rem;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  height: 3.8rem;
+  letter-spacing: .1rem;
+  line-height: 3.8rem;
+  padding: 0 3.0rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.button:focus,
+.button:hover,
+button:focus,
+button:hover,
+input[type='submit']:focus,
+input[type='submit']:hover {
+  background-color: #606c76;
+  border-color: #606c76;
+  color: #fff;
+  outline: 0;
+}
+
+input[type='text'],
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0.1rem solid #d1d1d1;
+  border-radius: .4rem;
+  box-shadow: none;
+  box-sizing: inherit;
+  height: 3.8rem;
+  padding: .6rem 1.0rem;
+  width: 100%;
+}
+
+input[type='text']:focus,
+select:focus {
+  border-color: #9b4dca;
+  outline: 0;
+}
+
+select {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#d1d1d1" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat;
+  padding-right: 3.0rem;
+}
+
+select:focus {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#9b4dca" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>');
+}
+
+label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+div.field,
+div.actions {
+  margin-bottom: 10px;
+}
+
+
+/* 3. Grille (Milligram)
+   ========================================================================== */
+
+.container {
+  margin: 0 auto;
+  max-width: 112.0rem;
+  padding: 0 2.0rem;
+  position: relative;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+}
+
+.row .column {
+  display: block;
+  flex: 1 1 auto;
+  margin-left: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .row {
+    flex-direction: row;
+    margin-left: -1.0rem;
+    width: calc(100% + 2.0rem);
+  }
+
+  .row .column {
+    margin-bottom: inherit;
+    padding: 0 1.0rem;
+  }
+}
+
+
+/* 4. Tableaux
+   ========================================================================== */
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+td,
+th {
+  border-bottom: 0.1rem solid #e1e1e1;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+}
+
+td:first-child,
+th:first-child {
+  padding-left: 0;
+}
+
+td:last-child,
+th:last-child {
+  padding-right: 0;
+}
+
+table.records td:last-child {
+  text-align: right;
+}
+
+
+/* 5. Icônes Font Awesome (uniquement celles utilisées)
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: auto;
+  src: url(fa-solid-900.woff2) format("woff2"),
+  url(fa-solid-900.woff) format("woff");
+}
+
+.fa {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fa-comment:before     { content: "\f075"; } /* Complete and be ready        */
+.fa-edit:before        { content: "\f044"; } /* modifier un champ            */
+.fa-trash-alt:before   { content: "\f2ed"; } /* supprimer un champ           */
+.fa-trash:before       { content: "\f1f8"; } /* exercises.html (à venir)     */
+.fa-chart-bar:before   { content: "\f080"; } /* exercises.html (à venir)     */
+.fa-minus-circle:before{ content: "\f056"; } /* exercises.html (à venir)     */
+
+
+/* 6. En-têtes et couleurs par section
+   ========================================================================== */
+
+main.container {
+  margin-top: 5rem;
+}
+
+header.heading {
+  height: 5rem;
+  color: white;
+  display: block;
+  left: 0;
+  max-width: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+header.heading section {
+  display: flex;
+  height: 5rem;
+}
+
+header.heading img {
+  height: 100%;
+}
+
+header.heading .exercise-label {
+  margin: auto;
+  margin-left: 2rem;
+}
+
+header.heading .exercise-label a {
+  color: white;
+  font-weight: bold;
+}
+
+header.heading .exercise-label a:hover {
+  color: #606c76;
+}
+
+header.dashboard .container {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  padding: 2rem;
+}
+
+header.dashboard .container h1 {
+  letter-spacing: 1.1rem;
+}
+
+div.dashboard {
+  margin-top: 2rem;
+}
+
+.answering {
+  border-color: rgba(155, 77, 202, 1);
+  background-color: rgba(155, 77, 202, 1);
+}
+
+.managing {
+  border-color: rgba(224, 164, 88, 1);
+  background-color: rgba(224, 164, 88, 1);
+}
+
+.results {
+  border-color: rgba(65, 157, 120, 1);
+  background-color: rgba(65, 157, 120, 1);
+}
+
+header {
+  background-color: rgba(155, 77, 202, 1);
+}
+
+header.answering { background-color: rgba(155, 77, 202, 1); }
+header.managing  { background-color: rgba(224, 164, 88, 1); }
+header.results   { background-color: rgba(65, 157, 120, 1); }
+
+
+/* 7. Liste « Take an exercise »
+   ========================================================================== */
+
+.ansering-list {
+  padding-top: 2rem;
+}
+
+.card {
+  background-color: #eee;
+  border-radius: .4rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.card a.button {
+  display: block;
+}
+
+.card .title {
+  margin: 1rem 0;
+}
+
+
+/* 8. AJOUT (n'existait pas dans l'original)
+   Boutons-icônes générés par fields_page_generator.rb.
+   Sans cette règle, le <button> « supprimer » hérite du gros bouton violet
+   Milligram alors que le lien « modifier » reste une simple icône.
+   ========================================================================== */
+
+.icon-button,
+button.icon-button {
+  background: none;
+  border: 0;
+  color: #9b4dca;
+  height: auto;
+  line-height: 1;
+  margin: 0 0 0 1rem;
+  padding: 0;
+  font-size: 1.6rem;
+}
+
+.icon-button:hover,
+.icon-button:focus,
+button.icon-button:hover,
+button.icon-button:focus {
+  background: none;
+  color: #606c76;
+}
+
+.icon-delete:hover,
+button.icon-delete:hover {
+  color: rgba(244, 88, 102, 1);
+}
