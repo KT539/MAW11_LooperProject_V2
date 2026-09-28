@@ -25,4 +25,5 @@ require_relative 'backend/services/form_directory_cleaner'
 require_relative 'backend/controller/forms_controller'
 require_relative 'backend/controller/fields_controller'
 
+use Rack::Static, urls: ['/assets'], root: File.expand_path('src', __dir__)
 run Sinatra::Application

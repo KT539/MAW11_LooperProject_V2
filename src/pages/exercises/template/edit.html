@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>ExerciseLooper</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header class="heading managing">
+    <section class="container">
+      <a href="/index.html"><img src="/assets/logo.png" alt="Accueil" /></a>
+      <span class="exercise-label">Exercise: <a href="/exercises/<!-- FORM_ID -->/fields.html">Retour</a></span>
+    </section>
+  </header>
+
+  <main class="container">
+    <h1>Editing Field</h1>
+
+    <form action="<!-- EDIT_FORM_ACTION -->" method="post">
+      <div class="field">
+        <label for="field_label">Label</label>
+        <input type="text" value="<!-- LABEL_VALUE -->" name="field[label]" id="field_label" maxlength="50" required />
+      </div>
+
+      <div class="field">
+        <label for="field_value_kind">Value kind</label>
+        <select name="field[value_kind]" id="field_value_kind">
+          <!-- VALUE_KIND_OPTIONS -->
+        </select>
+      </div>
+
+      <div class="actions">
+        <input type="submit" value="Update Field" />
+      </div>
+    </form>
+  </main>
+</body>
+</html>
