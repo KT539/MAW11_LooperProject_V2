@@ -15,7 +15,7 @@ require_relative 'backend/helpers/view_helpers'
 
 # models
 require_relative 'backend/models/form'
-require_relative 'backend/models/label'
+require_relative 'backend/models/field'
 
 # services
 require_relative 'backend/services/fields_page_generator'
@@ -23,6 +23,6 @@ require_relative 'backend/services/form_directory_cleaner'
 
 # controllers
 require_relative 'backend/controller/forms_controller'
-require_relative 'backend/controller/labels_controller'
+require_relative 'backend/controller/fields_controller'
 
 run Sinatra::Application

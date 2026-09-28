@@ -1,0 +1,24 @@
+-- Core Schema
+DROP DATABASE IF EXISTS MAW11_Looper_RGK;
+CREATE DATABASE MAW11_Looper_RGK CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE MAW11_Looper_RGK;
+
+-- FORMS table
+CREATE TABLE forms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    status VARCHAR(30) NOT NULL
+);
+
+-- FIELDS table
+CREATE TABLE fields (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    label VARCHAR(50) NOT NULL,
+    type VARCHAR(30) NOT NULL,
+    form_id INT NOT NULL,
+    CONSTRAINT fk_fields_form
+        FOREIGN KEY (form_id) REFERENCES forms(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
