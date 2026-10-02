@@ -14,7 +14,9 @@
 
   <main class="container">
     <ul class="ansering-list">
-      <!-- ANSWERING_ITEMS -->
+      <% @answering_forms.each do |form| %>
+        <li><%= h(form['name']) %></li>
+      <% end %>
     </ul>
   </main>
 </body>

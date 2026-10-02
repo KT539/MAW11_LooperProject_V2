@@ -1,2 +1,2 @@
-set :public_folder, PUBLIC_FOLDER
-
+set :views, VIEWS_FOLDER
+set :static, false

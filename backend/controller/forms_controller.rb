@@ -3,12 +3,33 @@ get '/' do
 end
 
 
+get '/index.html' do
+  erb :'index.html'
+end
+
+
+get '/exercises.html' do
+  @forms_by_status = Form.all.group_by { |form| form['status'] }
+  erb :'exercises.html'
+end
+
+
+get '/exercises/new.html' do
+  erb :'new.html'
+end
+
+
+get '/exercises/answering.html' do
+  @answering_forms = Form.all.select { |form| form['status'] == 'Answering' }
+  erb :'answering.html'
+end
+
+
 post '/traitement' do
   title = params.dig('exercise', 'title').to_s.strip
   halt 422, 'Veuillez saisir un titre.' if title.empty?
 
   form_id = Form.create(title, 'Building')
-  generate_fields_page(form_id)
 
   redirect "/exercises/#{form_id}/fields.html"
 end
@@ -16,16 +37,12 @@ end
 
 post '/exercises/:form_id/complete' do
   form_id = params[:form_id]
-  halt 404, 'Exercice introuvable.' unless form_id.match?(/\d/)
+  halt 404, 'Exercice introuvable.' unless form_id.match?(/\A\d+\z/)
 
   form_exists = Form.exists?(form_id)
   halt 404, 'Exercice introuvable.' unless form_exists
 
   Form.update_status(form_id, 'Answering')
-  FileUtils.rm_rf(form_directory_path(form_id))
-  cleanup_expired_form_directories
 
   redirect '/exercises.html'
 end
-
-

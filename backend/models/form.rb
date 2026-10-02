@@ -1,6 +1,10 @@
 module Form
+    def self.all
+      DB.query('SELECT id, name, status FROM forms ORDER BY id')
+    end
+
     def self.find(form_id)
-      DB.prepare('SELECT name FROM forms WHERE id = ?').execute(form_id).first
+      DB.prepare('SELECT name, status FROM forms WHERE id = ?').execute(form_id).first
     end
 
     def self.exists?(form_id)

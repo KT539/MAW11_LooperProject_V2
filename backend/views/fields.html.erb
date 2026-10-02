@@ -9,7 +9,7 @@
   <header class="heading managing">
     <section class="container">
       <a href="/index.html"><img src="/assets/logo.png" alt="Accueil" /></a>
-      <span class="exercise-label">Exercise: <a href="fields.html">[Forms title]</a></span>
+      <span class="exercise-label">Exercise: <a href="/exercises/<%= h(@form_id) %>/fields.html"><%= h(@form['name']) %></a></span>
     </section>
   </header>
 
@@ -26,11 +26,22 @@
             </tr>
           </thead>
           <tbody>
-            <!-- FIELD_ROWS -->
+            <% @fields.each do |field| %>
+              <tr>
+                <td><%= h(field['label']) %></td>
+                <td><%= h(field['type']) %></td>
+                <td>
+                  <a class="icon-button" href="/exercises/<%= h(@form_id) %>/fields/<%= h(field['id']) %>/edit" title="Update"><i class="fa fa-edit"></i></a>
+                  <form action="/exercises/<%= h(@form_id) %>/fields/<%= h(field['id']) %>/delete" method="post" style="display:inline">
+                    <button type="submit" class="icon-button icon-delete" title="Delete"><i class="fa fa-trash-alt"></i></button>
+                  </form>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
 
-        <form action="<!-- COMPLETE_FORM_ACTION -->" method="post"
+        <form action="/exercises/<%= h(@form_id) %>/complete" method="post"
               onsubmit="return confirm('Are you sure? You will no longer be able to edit this exercise.');">
           <button class="button" type="submit"><i class="fa fa-comment"></i> Complete and be ready for answers</button>
         </form>
@@ -38,7 +49,7 @@
 
       <section class="column">
         <h1>New Field</h1>
-        <form action="<!-- FIELD_FORM_ACTION -->" method="post">
+        <form action="/exercises/<%= h(@form_id) %>/fields" method="post">
           <div class="field">
             <label for="field_label">Label</label>
             <input type="text" name="field[label]" id="field_label" maxlength="50" required />
@@ -47,9 +58,9 @@
           <div class="field">
             <label for="field_value_kind">Value kind</label>
             <select name="field[value_kind]" id="field_value_kind">
-              <option selected="selected" value="single_line">Single line text</option>
-              <option value="single_line_list">List of single lines</option>
-              <option value="multi_line">Multi-line text</option>
+              <% FIELD_TYPES.each do |kind| %>
+                <option<%= ' selected="selected"' if kind == FIELD_TYPES.first %> value="<%= h(kind) %>"><%= h(FIELD_TYPE_LABELS[kind]) %></option>
+              <% end %>
             </select>
           </div>
 

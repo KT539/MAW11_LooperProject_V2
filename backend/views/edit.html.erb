@@ -9,23 +9,25 @@
   <header class="heading managing">
     <section class="container">
       <a href="/index.html"><img src="/assets/logo.png" alt="Accueil" /></a>
-      <span class="exercise-label">Exercise: <a href="/exercises/<!-- FORM_ID -->/fields.html">Retour</a></span>
+      <span class="exercise-label">Exercise: <a href="/exercises/<%= h(@form_id) %>/fields.html">Retour</a></span>
     </section>
   </header>
 
   <main class="container">
     <h1>Editing Field</h1>
 
-    <form action="<!-- EDIT_FORM_ACTION -->" method="post">
+    <form action="/exercises/<%= h(@form_id) %>/fields/<%= h(@field_id) %>/update" method="post">
       <div class="field">
         <label for="field_label">Label</label>
-        <input type="text" value="<!-- LABEL_VALUE -->" name="field[label]" id="field_label" maxlength="50" required />
+        <input type="text" value="<%= h(@field['label']) %>" name="field[label]" id="field_label" maxlength="50" required />
       </div>
 
       <div class="field">
         <label for="field_value_kind">Value kind</label>
         <select name="field[value_kind]" id="field_value_kind">
-          <!-- VALUE_KIND_OPTIONS -->
+          <% FIELD_TYPES.each do |kind| %>
+            <option<%= ' selected="selected"' if kind == @field['type'] %> value="<%= h(kind) %>"><%= h(FIELD_TYPE_LABELS[kind]) %></option>
+          <% end %>
         </select>
       </div>
 
