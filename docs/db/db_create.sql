@@ -22,3 +22,23 @@ CREATE TABLE fields (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+-- ANSWERS table (status column from AI)
+CREATE TABLE answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    answer_content VARCHAR(250),
+    answer_datetime DATETIME,
+    status ENUM('empty', 'answered', 'answered_long')
+        GENERATED ALWAYS AS (
+            CASE
+                WHEN answer_content IS NULL OR answer_content = '' THEN 'empty'
+                WHEN CHAR_LENGTH(answer_content) > 100 THEN 'answered_long'
+                ELSE 'answered'
+                END
+            ) STORED,
+    field_id INT NOT NULL,
+    CONSTRAINT fk_answers_fields
+        FOREIGN KEY (field_id) REFERENCES fields(id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
