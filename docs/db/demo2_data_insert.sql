@@ -6,17 +6,17 @@ USE MAW11_Looper_RGK;
 -- ==========================================
 
 INSERT INTO forms (id, name, status) VALUES
-                                         (1, 'Satisfaction cafeteria', 'building'),
-                                         (2, 'Inscription evenement', 'building'),
-                                         (3, 'Evaluation des cours', 'building'),
+                                         (1, 'Satisfaction cafeteria', 'Building'),
+                                         (2, 'Inscription evenement', 'Building'),
+                                         (3, 'Evaluation des cours', 'Building'),
 
-                                         (4, 'Sondage transports', 'answering'),
-                                         (5, 'Retour formation', 'answering'),
-                                         (6, 'Habitudes numeriques', 'answering'),
+                                         (4, 'Sondage transports', 'Answering'),
+                                         (5, 'Retour formation', 'Answering'),
+                                         (6, 'Habitudes numeriques', 'Answering'),
 
-                                         (7, 'Satisfaction entreprise', 'closed'),
-                                         (8, 'Evaluation restaurant', 'closed'),
-                                         (9, 'Enquete teletravail', 'closed');
+                                         (7, 'Satisfaction entreprise', 'Closed'),
+                                         (8, 'Evaluation restaurant', 'Closed'),
+                                         (9, 'Enquete teletravail', 'Closed');
 
 
 -- ==========================================
@@ -26,49 +26,49 @@ INSERT INTO forms (id, name, status) VALUES
 -- BUILDING : champs sans aucune reponse
 
 INSERT INTO fields (id, label, type, form_id) VALUES
-                                                  (1, 'Votre nom', 'text', 1),
-                                                  (2, 'Qualite des repas', 'select', 1),
-                                                  (3, 'Suggestions', 'textarea', 1),
+                                                  (1, 'Votre nom', 'single_line', 1),
+                                                  (2, 'Qualite des repas', 'single_line_list', 1),
+                                                  (3, 'Suggestions', 'multi_line', 1),
 
-                                                  (4, 'Nom du participant', 'text', 2),
-                                                  (5, 'Adresse email', 'email', 2),
-                                                  (6, 'Nombre de participants', 'number', 2),
+                                                  (4, 'Nom du participant', 'single_line', 2),
+                                                  (5, 'Adresse email', 'single_line', 2),
+                                                  (6, 'Nombre de participants', 'single_line', 2),
 
-                                                  (7, 'Nom du cours', 'text', 3),
-                                                  (8, 'Note du cours', 'number', 3),
-                                                  (9, 'Commentaires', 'textarea', 3);
+                                                  (7, 'Nom du cours', 'single_line', 3),
+                                                  (8, 'Note du cours', 'single_line', 3),
+                                                  (9, 'Commentaires', 'multi_line', 3);
 
 
 -- ANSWERING : formulaires en cours de remplissage
 
 INSERT INTO fields (id, label, type, form_id) VALUES
-                                                  (10, 'Moyen de transport', 'select', 4),
-                                                  (11, 'Distance quotidienne en km', 'number', 4),
-                                                  (12, 'Avis sur les transports', 'textarea', 4),
+                                                  (10, 'Moyen de transport', 'single_line_list', 4),
+                                                  (11, 'Distance quotidienne en km', 'single_line', 4),
+                                                  (12, 'Avis sur les transports', 'multi_line', 4),
 
-                                                  (13, 'Nom de la formation', 'text', 5),
-                                                  (14, 'Note sur 10', 'number', 5),
-                                                  (15, 'Points a ameliorer', 'textarea', 5),
+                                                  (13, 'Nom de la formation', 'single_line', 5),
+                                                  (14, 'Note sur 10', 'single_line', 5),
+                                                  (15, 'Points a ameliorer', 'multi_line', 5),
 
-                                                  (16, 'Heures ecran par jour', 'number', 6),
-                                                  (17, 'Application favorite', 'text', 6),
-                                                  (18, 'Impact du numerique', 'textarea', 6);
+                                                  (16, 'Heures ecran par jour', 'single_line', 6),
+                                                  (17, 'Application favorite', 'single_line', 6),
+                                                  (18, 'Impact du numerique', 'multi_line', 6);
 
 
 -- CLOSED : formulaires termines
 
 INSERT INTO fields (id, label, type, form_id) VALUES
-                                                  (19, 'Departement', 'select', 7),
-                                                  (20, 'Satisfaction generale', 'number', 7),
-                                                  (21, 'Commentaires', 'textarea', 7),
+                                                  (19, 'Departement', 'single_line_list', 7),
+                                                  (20, 'Satisfaction generale', 'single_line', 7),
+                                                  (21, 'Commentaires', 'multi_line', 7),
 
-                                                  (22, 'Plat commande', 'text', 8),
-                                                  (23, 'Note du repas', 'number', 8),
-                                                  (24, 'Avis sur le restaurant', 'textarea', 8),
+                                                  (22, 'Plat commande', 'single_line', 8),
+                                                  (23, 'Note du repas', 'single_line', 8),
+                                                  (24, 'Avis sur le restaurant', 'multi_line', 8),
 
-                                                  (25, 'Jours a domicile', 'number', 9),
-                                                  (26, 'Productivite ressentie', 'select', 9),
-                                                  (27, 'Avantages du teletravail', 'textarea', 9);
+                                                  (25, 'Jours a domicile', 'single_line', 9),
+                                                  (26, 'Productivite ressentie', 'single_line_list', 9),
+                                                  (27, 'Avantages du teletravail', 'multi_line', 9);
 
 
 -- ==========================================

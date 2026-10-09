@@ -248,6 +248,37 @@ table.records td:last-child {
   text-align: right;
 }
 
+.results-container {
+  max-width: none;
+  overflow-x: auto;
+}
+
+.results-matrix th:not(:first-child) {
+  min-width: 18rem;
+  color: #9b4dca;
+}
+
+.results-matrix td,
+.results-matrix tbody th {
+  padding-top: 1.8rem;
+  padding-bottom: 1.8rem;
+}
+
+.results-matrix .take-date {
+  min-width: 18rem;
+  font-weight: normal;
+  color: #9b4dca;
+}
+
+.results-matrix .answer-icon {
+  font-size: 2rem;
+  color: #419d78;
+}
+
+.results-matrix .answer-icon.empty {
+  color: #ff5263;
+}
+
 
 /* 5. Icônes Font Awesome (uniquement celles utilisées)
    ========================================================================== */
@@ -279,6 +310,9 @@ table.records td:last-child {
 .fa-trash:before       { content: "\f1f8"; } /* exercises.html (à venir)     */
 .fa-chart-bar:before   { content: "\f080"; } /* exercises.html (à venir)     */
 .fa-minus-circle:before{ content: "\f056"; } /* exercises.html (à venir)     */
+.fa-check:before       { content: "\f00c"; }
+.fa-check-double:before{ content: "\f560"; }
+.fa-times:before       { content: "\f00d"; }
 
 
 /* 6. En-têtes et couleurs par section

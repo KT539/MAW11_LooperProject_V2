@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Results — <%= h(@form['name']) %></title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header class="heading results">
+    <section class="container">
+      <a href="/index.html"><img src="/assets/logo.png" alt="Accueil" /></a>
+      <span class="exercise-label">Exercise: <a href="/exercises/<%= h(@form_id) %>/results.html"><%= h(@form['name']) %></a></span>
+    </section>
+  </header>
+
+  <main class="container results-container">
+    <% if @fields.empty? %>
+      <p>Cet exercice ne contient aucune question.</p>
+    <% else %>
+      <table class="results-matrix" aria-label="Résultats de l’exercice">
+        <thead>
+          <tr>
+            <th scope="col">Take</th>
+            <% @fields.each do |field| %>
+              <th scope="col"><%= h(field['label']) %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @result_rows.empty? %>
+            <tr><td colspan="<%= @fields.length + 1 %>">Aucune réponse enregistrée pour cet exercice.</td></tr>
+          <% end %>
+          <% @result_rows.each do |row| %>
+            <tr>
+              <th scope="row" class="take-date">
+                <% if row[:date] %>
+                  <%= h(row[:date].strftime('%Y-%m-%d %H:%M:%S UTC')) %><br/>
+                <% else %>
+                  Date non renseignée
+                <% end %>
+              </th>
+              <% @fields.each do |field| %>
+                <% answer = row[:answers][field['id']] %>
+                <td class="answer">
+                  <% if !answer || answer['status'] == 'empty' %>
+                    <span class="answer-icon empty" role="img" aria-label="Aucune réponse" title="Aucune réponse">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff5263" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+                    </span>
+                  <% elsif answer['status'] == 'answered_long' %>
+                    <span class="answer-icon" role="img" aria-label="Réponse longue" title="Réponse longue">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#419d78" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8l4 4L18 2M4 15l4 4L20 7" /></svg>
+                    </span>
+                  <% else %>
+                    <span class="answer-icon" role="img" aria-label="Réponse courte" title="Réponse courte">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#419d78" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4L19 6" /></svg>
+                    </span>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </main>
+</body>
+</html>

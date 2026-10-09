@@ -14,6 +14,7 @@ require_relative 'backend/helpers/view_helpers'
 # models
 require_relative 'backend/models/form'
 require_relative 'backend/models/field'
+require_relative 'backend/models/answer'
 
 # controllers
 require_relative 'backend/controller/forms_controller'

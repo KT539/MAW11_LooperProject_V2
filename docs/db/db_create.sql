@@ -8,7 +8,7 @@ USE MAW11_Looper_RGK;
 CREATE TABLE forms (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    status ENUM('building', 'answering', 'closed')
+    status ENUM('Building', 'Answering', 'Closed')
 );
 
 -- FIELDS table
