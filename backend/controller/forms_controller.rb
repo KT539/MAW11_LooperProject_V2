@@ -1,31 +1,4 @@
-get '/' do
-  redirect '/index.html'
-end
-
-
-get '/index.html' do
-  erb :'index.html'
-end
-
-
-get '/exercises.html' do
-  @forms_by_status = Form.all.group_by { |form| form['status'] }
-  erb :'exercises.html'
-end
-
-
-get '/exercises/new.html' do
-  erb :'new.html'
-end
-
-
-get '/exercises/answering.html' do
-  @answering_forms = Form.all.select { |form| form['status'] == 'Answering' }
-  erb :'answering.html'
-end
-
-
-get '/exercises/:form_id/results.html' do
+get '/exercises/:form_id/results' do
   @form_id = params[:form_id]
   halt 404, 'Exercice introuvable.' unless @form_id.match?(/\A\d+\z/)
 
@@ -45,6 +18,11 @@ get '/exercises/:form_id/results.html' do
 
   erb :'results.html'
 end
+
+get '/exercises/:form_id/results.html' do
+  redirect "/exercises/#{params[:form_id]}/results", 301
+end
+
 
 post '/traitement' do
   title = params.dig('exercise', 'title').to_s.strip
@@ -79,7 +57,7 @@ post '/exercises/:form_id/delete' do
 
   Form.delete(form_id)
 
-  redirect '/exercises.html'
+  redirect '/exercises'
 end
 
 
@@ -92,5 +70,5 @@ post '/exercises/:form_id/closed' do
 
   Form.update_status(form_id, 'Closed')
 
-  redirect '/exercises.html'
+  redirect '/exercises'
 end

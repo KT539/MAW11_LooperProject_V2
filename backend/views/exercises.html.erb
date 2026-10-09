@@ -8,7 +8,7 @@
 <body>
   <header class="heading results">
     <section class="container">
-      <a href="/index.html"><img src="/assets/logo.png" alt="Accueil" /></a>
+      <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
     </section>
   </header>
 
@@ -28,7 +28,7 @@
                   <% if form['fields_count'].to_i > 0 %>
                     <form action="/exercises/<%= h(form['id']) %>/complete" method="post" style="display:inline"><button type="submit" class="icon-button" title="Answering" aria-label="Be ready for answers"><i class="fa fa-comment"></i></button></form>
                   <% end %>
-                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/fields.html" title="Update"><i class="fa fa-edit"></i></a>
+                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/fields" title="Update"><i class="fa fa-edit"></i></a>
                   <form action="/exercises/<%= h(form['id']) %>/delete" method="post" style="display:inline"><button type="submit" class="icon-button icon-delete" title="Delete" aria-label="Delete exercise"><i class="fa fa-trash-alt"></i></button></form>
                 </td>
               </tr>
@@ -48,7 +48,7 @@
                   <%= h(form['name']) %>
                 </td>
                 <td>
-                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/results.html" title="results on exercicse"><i class="fa fa-chart-bar"></i></a>
+                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/results" title="results on exercicse"><i class="fa fa-chart-bar"></i></a>
                   <form action="/exercises/<%= h(form['id']) %>/closed" method="post" style="display:inline"><button type="submit" class="icon-button" title="Closed" aria-label="Closed exercise"><i class="fa fa-minus-circle"></i></button></form>
                 </td>
               </tr>
@@ -68,7 +68,7 @@
                 <%= h(form['name']) %>
                 </td>
                 <td>
-                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/results.html" title="results on exercicse"><i class="fa fa-chart-bar"></i></a>
+                  <a class="icon-button" href="/exercises/<%= h(form['id']) %>/results" title="results on exercicse"><i class="fa fa-chart-bar"></i></a>
                   <form action="/exercises/<%= h(form['id']) %>/delete" method="post" style="display:inline"><button type="submit" class="icon-button icon-delete" title="Delete" aria-label="Delete exercise"><i class="fa fa-trash-alt"></i></button></form>
                 </td>
               </tr>

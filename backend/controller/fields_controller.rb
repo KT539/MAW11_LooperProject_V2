@@ -28,7 +28,7 @@ post '/exercises/:form_id/fields' do
 
   Field.create(label, value_kind, form_id)
 
-  redirect "/exercises/#{form_id}/fields.html"
+  redirect "/exercises/#{form_id}/fields"
 end
 
 
@@ -63,7 +63,7 @@ post '/exercises/:form_id/fields/:field_id/update' do
 
   Field.update(field_id, form_id, label, value_kind)
 
-  redirect "/exercises/#{form_id}/fields.html"
+  redirect "/exercises/#{form_id}/fields"
 end
 
 
@@ -78,5 +78,5 @@ post '/exercises/:form_id/fields/:field_id/delete' do
 
   Field.delete(field_id, form_id)
 
-  redirect "/exercises/#{form_id}/fields.html"
+  redirect "/exercises/#{form_id}/fields"
 end
