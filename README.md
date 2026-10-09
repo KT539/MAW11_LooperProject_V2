@@ -1,36 +1,106 @@
-# MAW11_LooperProject_V2
+# ExerciseLooper
 
-Application Ruby/Sinatra avec une base MySQL. Installer les gems dans le projet
-(sans droits administrateur), depuis sa racine :
+ExerciseLooper est une application web permettant de créer et de gérer des exercices sous forme de formulaires personnalisés.  
+Le site-modèle est disponible ici : https://exercice-looper.mycpnv.ch
 
-```sh
+Le projet est développé en **Ruby avec Sinatra**, avec une base de données **MySQL** et une architecture **MVC**.
+
+## Technologies utilisées
+
+- **Backend :** Ruby 3.3+, Sinatra
+- **Frontend :** HTML, CSS, ERB
+- **Base de données :** MySQL
+- **Dépendances :** Bundler (RubyGems)
+- **Serveur :** Rack / Puma
+
+## Fonctionnalités
+
+- Création d'exercices personnalisés
+- Ajout, modification et suppression de champs
+- Trois types de champs : texte simple, liste de lignes et texte multiligne
+- Gestion des exercices selon leur statut :
+  - `Building` : exercice en cours de création
+  - `Answering` : exercice disponible pour les réponses
+  - `Closed` : exercice terminé
+- Stockage des exercices et de leurs champs dans une base MySQL
+
+**Note :** La saisie des réponses et la gestion des exercices terminés ne sont pas encore implémentées.
+
+## Installation
+
+### 1. Prérequis
+
+- Ruby 3.3 ou supérieur
+- Bundler
+- MySQL
+
+### 2. Installer les dépendances
+
+Depuis la racine du projet :
+
+```bash
 bundle config set --local path vendor/bundle
 bundle install
 ```
 
-Configurer ensuite `DB_HOST`, `DB_USERNAME`, `DB_PASSWORD` et `DB_DATABASE` dans
-`.env` avec les paramètres de la base MySQL existante, puis lancer :
+### 3. Configurer la base de données
 
-```sh
+Créer la base MySQL en exécutant le script :
+
+`docs/db/db_create.sql`
+
+Créer ensuite un fichier `.env` à la racine du projet :
+
+```env
+DB_HOST=localhost
+DB_USERNAME=root
+DB_PASSWORD=your_password
+DB_DATABASE=MAW11_Looper_RGK
+```
+
+Adapter les paramètres à votre configuration MySQL.
+
+### 4. Démarrer l'application
+
+Depuis la racine du projet :
+
+```bash
 bundle exec rackup
 ```
 
-La configuration locale `.bundle/` et les gems `vendor/bundle/` sont ignorées par Git.
+L'application est ensuite accessible à l'adresse :
 
-Les six vues sont dans `backend/views/*.html.erb`. Les contrôleurs transmettent
-les données des modules `Form` et `Field` aux vues ; les contenus issus de la base
-sont échappés avec le helper `h`. Les fichiers CSS, polices et images restent dans
-`src/assets`, servis par `Rack::Static`.
+**http://localhost:9292**
 
-Les URL existantes sont conservées : `/index.html`, `/exercises.html`,
-`/exercises/new.html`, `/exercises/answering.html` et
-`/exercises/:form_id/fields.html`. Leur extension `.html` désigne une route,
-pas un fichier généré. L'édition d'un champ reste accessible à
-`/exercises/:form_id/fields/:field_id/edit`.
+## Structure du projet
 
-Les listes affichent les exercices enregistrés selon leur statut. La page des
-champs relit la base à chaque consultation et n'est affichée que pour un exercice
-en construction (`Building`). La finalisation passe son statut à `Answering`.
-Aucun fichier HTML ni dossier par exercice n'est créé, modifié ou supprimé.
-Le formulaire de réponse et les actions sur les exercices fermés ne sont pas
-implémentés dans cette version.
+```text
+.
+├── backend/
+│   ├── config/          # Configuration
+│   ├── controller/      # Contrôleurs Sinatra
+│   ├── helpers/         # Fonctions utilitaires
+│   ├── models/          # Accès à la base de données
+│   └── views/           # Templates HTML/ERB
+├── docs/
+│   ├── data_models/
+│   ├── db/              # Scripts SQL
+│   └── project_management/
+├── src/
+│   └── assets/          # CSS, images et polices
+├── config.ru            # Point d'entrée de l'application
+├── Gemfile              # Dépendances Ruby
+└── README.md
+```
+
+## Architecture
+
+L'application suit une architecture MVC :
+
+- **Models :** communication avec la base de données MySQL.
+- **Views :** affichage des pages HTML à l'aide de templates ERB.
+- **Controllers :** gestion des routes HTTP et des interactions entre les modèles et les vues.
+
+## État du projet
+
+Projet en cours de développement. Les fonctionnalités de création et de gestion des exercices sont partiellement implémentées.

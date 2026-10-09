@@ -52,12 +52,13 @@ post '/traitement' do
 
   form_id = Form.create(title, 'Building')
 
-  redirect "/exercises/#{form_id}/fields.html"
+  redirect "/exercises/#{form_id}/fields"
 end
 
 
 post '/exercises/:form_id/complete' do
   form_id = params[:form_id]
+
   halt 404, 'Exercice introuvable.' unless form_id.match?(/\A\d+\z/)
 
   form_exists = Form.exists?(form_id)
@@ -65,7 +66,7 @@ post '/exercises/:form_id/complete' do
 
   Form.update_status(form_id, 'Answering')
 
-  redirect '/exercises.html'
+  redirect '/exercises'
 end
 
 

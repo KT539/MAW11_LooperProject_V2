@@ -1,4 +1,4 @@
-get '/exercises/:form_id/fields.html' do
+get '/exercises/:form_id/fields' do
   @form_id = params[:form_id]
   halt 404, 'Exercice introuvable.' unless @form_id.match?(/\A\d+\z/)
 
@@ -7,6 +7,10 @@ get '/exercises/:form_id/fields.html' do
 
   @fields = Field.all_for_form(@form_id)
   erb :'fields.html'
+end
+
+get '/exercises/:form_id/fields.html' do
+  redirect "/exercises/#{params[:form_id]}/fields", 301
 end
 
 

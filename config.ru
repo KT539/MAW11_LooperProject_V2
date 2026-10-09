@@ -19,6 +19,7 @@ require_relative 'backend/models/answer'
 # controllers
 require_relative 'backend/controller/forms_controller'
 require_relative 'backend/controller/fields_controller'
+require_relative 'backend/controller/pages_controller'
 
 use Rack::Static, urls: ['/assets'], root: File.expand_path('src', __dir__)
 run Sinatra::Application
