@@ -65,7 +65,7 @@ Adapter les paramètres à votre configuration MySQL.
 Depuis la racine du projet :
 
 ```bash
-bundle exec rackup
+bundle exec rerun rackup
 ```
 
 L'application est ensuite accessible à l'adresse :
