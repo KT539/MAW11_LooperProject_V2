@@ -6,35 +6,35 @@
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
-  <header class="heading managing">
-    <section class="container">
-      <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
-      <span class="exercise-label">Exercise: <a href="/exercises/<%= h(@form_id) %>/fields">Retour</a></span>
-    </section>
-  </header>
+<header class="heading managing">
+  <section class="container">
+    <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
+    <span class="exercise-label">Exercise: <a href="/exercises/<%= h(@form_id) %>/fields">Retour</a></span>
+  </section>
+</header>
 
-  <main class="container">
-    <h1>Editing Field</h1>
+<main class="container">
+  <h1>Editing Field</h1>
 
-    <form action="/exercises/<%= h(@form_id) %>/fields/<%= h(@field_id) %>/update" method="post">
-      <div class="field">
-        <label for="field_label">Label</label>
-        <input type="text" value="<%= h(@field['label']) %>" name="field[label]" id="field_label" maxlength="50" required />
-      </div>
+  <form action="/exercises/<%= h(@form_id) %>/fields/<%= h(@field_id) %>/update" method="post">
+    <div class="field">
+      <label for="field_label">Label</label>
+      <input type="text" value="<%= h(@field.label) %>" name="field[label]" id="field_label" maxlength="50" required />
+    </div>
 
-      <div class="field">
-        <label for="field_value_kind">Value kind</label>
-        <select name="field[value_kind]" id="field_value_kind">
-          <% FIELD_TYPES.each do |kind| %>
-            <option<%= ' selected="selected"' if kind == @field['type'] %> value="<%= h(kind) %>"><%= h(FIELD_TYPE_LABELS[kind]) %></option>
-          <% end %>
-        </select>
-      </div>
+    <div class="field">
+      <label for="field_value_kind">Value kind</label>
+      <select name="field[value_kind]" id="field_value_kind">
+        <% FIELD_TYPES.each do |kind| %>
+          <option<%= ' selected="selected"' if kind == @field.type %> value="<%= h(kind) %>"><%= h(FIELD_TYPE_LABELS[kind]) %></option>
+        <% end %>
+      </select>
+    </div>
 
-      <div class="actions">
-        <input type="submit" value="Update Field" />
-      </div>
-    </form>
-  </main>
+    <div class="actions">
+      <input type="submit" value="Update Field" />
+    </div>
+  </form>
+</main>
 </body>
 </html>

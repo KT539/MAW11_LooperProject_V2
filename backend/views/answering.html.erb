@@ -6,18 +6,18 @@
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
-  <header class="heading answering">
-    <section class="container">
-      <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
-    </section>
-  </header>
+<header class="heading answering">
+  <section class="container">
+    <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
+  </section>
+</header>
 
-  <main class="container">
-    <ul class="ansering-list">
-      <% @answering_forms.each do |form| %>
-        <li><%= h(form['name']) %></li>
-      <% end %>
-    </ul>
-  </main>
+<main class="container">
+  <ul class="ansering-list">
+    <% @answering_forms.each do |form| %>
+      <li><%= h(form.name) %></li>
+    <% end %>
+  </ul>
+</main>
 </body>
 </html>
