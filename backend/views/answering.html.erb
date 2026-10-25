@@ -15,7 +15,12 @@
 <main class="container">
   <ul class="ansering-list">
     <% @answering_forms.each do |form| %>
-      <li><%= h(form.name) %></li>
+      <li class="row">
+        <div class="column card">
+          <div class="title"><%= h(form.name) %></div>
+          <a class="button" href="#">Take it</a>
+        </div>
+      </li>
     <% end %>
   </ul>
 </main>
