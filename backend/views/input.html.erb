@@ -15,7 +15,7 @@
   <form action="/exercises/<%= h(@form_id) %>/fields/<%= h(@field_id) %>/update" method="post">
     <div class="field">
       <label for="field_label">Label</label>
-      <input type="text" value="<%= h(@field.label) %>" name="field[label]" id="field_label" maxlength="50" required />
+      <input type="text" name="field[label]" id="field_label" maxlength="50" required />
     </div>
   </form>
 </main>
