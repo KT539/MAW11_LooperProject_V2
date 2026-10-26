@@ -27,7 +27,7 @@ CREATE TABLE fields (
 CREATE TABLE answers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     answer_content VARCHAR(250),
-    answer_datetime DATETIME,
+    answer_datetime DATETIME NOT NULL,
     status ENUM('empty', 'answered', 'answered_long')
         GENERATED ALWAYS AS (
             CASE
