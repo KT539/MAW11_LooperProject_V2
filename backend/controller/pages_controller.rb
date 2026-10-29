@@ -1,4 +1,4 @@
-class PagesController < Parent_Controller
+class PagesController < ParentController
   get '/' do
     erb :'index.html'
   end

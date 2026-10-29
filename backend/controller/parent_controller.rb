@@ -1,4 +1,4 @@
-class Parent_Controller < Sinatra::Base
+class ParentController < Sinatra::Base
   set :views, VIEWS_FOLDER
   set :static, false
   set :show_exceptions, false

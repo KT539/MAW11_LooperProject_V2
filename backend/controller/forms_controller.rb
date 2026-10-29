@@ -1,4 +1,4 @@
-class FormsController < Parent_Controller
+class FormsController < ParentController
   get '/exercises' do
     @forms_by_status = Form.all.group_by { |form| form.status }
     erb :'exercises.html'
