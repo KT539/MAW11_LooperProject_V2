@@ -1,30 +1,34 @@
 # ExerciseLooper
 
-ExerciseLooper est une application web permettant de créer et de gérer des exercices sous forme de formulaires personnalisés.  
-Le site-modèle est disponible ici : https://exercice-looper.mycpnv.ch
+ExerciseLooper est une application web permettant de créer, compléter et gérer des exercices sous forme de formulaires personnalisés.
 
-Le projet est développé en **Ruby avec Sinatra**, avec une base de données **MySQL** et une architecture **MVC**.
+Le site servant de modèle au projet est disponible ici : https://exercice-looper.mycpnv.ch
+
+Le projet est développé en **Ruby avec Sinatra**, utilise une base de données **MySQL** et suit une architecture **MVC**.
 
 ## Technologies utilisées
 
-- **Backend :** Ruby 3.3+, Sinatra
+- **Backend :** Ruby 3.3+, Sinatra 4
 - **Frontend :** HTML, CSS, ERB
 - **Base de données :** MySQL
-- **Dépendances :** Bundler (RubyGems)
+- **Dépendances et configuration :** Bundler, dotenv
 - **Serveur :** Rack / Puma
 
 ## Fonctionnalités
 
-- Création d'exercices personnalisés
-- Ajout, modification et suppression de champs
-- Trois types de champs : texte simple, liste de lignes et texte multiligne
-- Gestion des exercices selon leur statut :
-  - `Building` : exercice en cours de création
-  - `Answering` : exercice disponible pour les réponses
-  - `Closed` : exercice terminé
-- Stockage des exercices et de leurs champs dans une base MySQL
+- Création et suppression d'exercices personnalisés.
+- Ajout, modification et suppression des champs d'un exercice en cours de création.
+- Trois types de champs : texte sur une ligne (`single_line`), liste de lignes (`single_line_list`) et texte multiligne (`multi_line`).
+- Gestion des exercices selon trois statuts :
+  - `Building` : exercice en cours de création, dont les champs peuvent être modifiés ;
+  - `Answering` : exercice accessible pour la saisie des réponses ;
+  - `Closed` : exercice clôturé, dont les résultats restent consultables.
+- Liste des exercices regroupés par statut.
+- Saisie et enregistrement des réponses pour les exercices au statut `Answering`, y compris les réponses laissées vides.
+- Consultation des résultats des exercices `Answering` et `Closed`, sous forme d'un tableau par soumission et par question.
+- Affichage d'indicateurs distinguant les réponses vides, courtes et longues (plus de 100 caractères).
+- Validation des données saisies et stockage dans MySQL.
 
-**Note :** La saisie des réponses et la gestion des exercices terminés ne sont pas encore implémentées.
 
 ## Installation
 
@@ -45,9 +49,11 @@ bundle install
 
 ### 3. Configurer la base de données
 
-Créer la base MySQL en exécutant le script :
+Exécuter le script SQL suivant dans MySQL :
 
 `docs/db/db_create.sql`
+
+**Attention :** ce script supprime puis recrée la base `MAW11_Looper_RGK`. Il efface donc les données déjà présentes dans cette base.
 
 Créer ensuite un fichier `.env` à la racine du projet :
 
@@ -58,49 +64,53 @@ DB_PASSWORD=your_password
 DB_DATABASE=MAW11_Looper_RGK
 ```
 
-Adapter les paramètres à votre configuration MySQL.
+Adapter les valeurs à la configuration locale de MySQL.
 
 ### 4. Démarrer l'application
 
 Depuis la racine du projet :
 
 ```bash
-bundle exec rerun rackup
+rerun rackup
 ```
 
-L'application est ensuite accessible à l'adresse :
+L'application est accessible par défaut à l'adresse : **http://localhost:9292**.
 
-**http://localhost:9292**
+Il est également possible de la lancer sans rechargement automatique :
+
+```bash
+rackup
+```
 
 ## Structure du projet
 
 ```text
 .
 ├── backend/
-│   ├── config/          # Configuration
-│   ├── controller/      # Contrôleurs Sinatra
-│   ├── helpers/         # Fonctions utilitaires
-│   ├── models/          # Accès à la base de données
-│   └── views/           # Templates HTML/ERB
+│   ├── config/              # Configuration, connexion MySQL et constantes
+│   ├── controller/          # Contrôleurs Sinatra et routes HTTP
+│   ├── helpers/             # Fonctions utilitaires
+│   ├── models/              # Modèles Form, Field et Answer
+│   └── views/               # Vues HTML/ERB
 ├── docs/
-│   ├── data_models/
-│   ├── db/              # Scripts SQL
-│   └── project_management/
+│   ├── data_models/         # Documents de modélisation
+│   ├── db/                  # Script de création de la base de données
+│   └── project_management/  # Documents de gestion de projet
 ├── src/
-│   └── assets/          # CSS, images et polices
-├── config.ru            # Point d'entrée de l'application
-├── Gemfile              # Dépendances Ruby
+│   └── assets/              # CSS, images et polices
+├── config.ru                # Point d'entrée Rack de l'application
+├── Gemfile                  # Dépendances Ruby
 └── README.md
 ```
 
 ## Architecture
 
-L'application suit une architecture MVC :
+L'application suit une architecture **MVC** :
 
-- **Models :** communication avec la base de données MySQL.
-- **Views :** affichage des pages HTML à l'aide de templates ERB.
-- **Controllers :** gestion des routes HTTP et des interactions entre les modèles et les vues.
+- **Models :** `Form`, `Field` et `Answer` gèrent les données et les opérations sur MySQL.
+- **Views :** les fichiers ERB génèrent les pages HTML affichées dans le navigateur.
+- **Controllers :** `FormsController`, `FieldsController` et `PagesController` gèrent les routes HTTP et coordonnent les modèles avec les vues. `ParentController` rassemble des comportements communs.
 
 ## État du projet
 
-Projet en cours de développement. Les fonctionnalités de création et de gestion des exercices sont partiellement implémentées.
+Le projet est **en cours de développement**, et ne dispose pas encore de pré-release.
