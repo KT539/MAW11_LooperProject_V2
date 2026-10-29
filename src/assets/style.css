@@ -88,6 +88,7 @@ ul {
 
 button,
 input,
+textarea,
 select {
   font-family: inherit;
   font-size: 100%;
@@ -98,6 +99,7 @@ select {
 }
 
 input,
+textarea,
 select {
   margin-bottom: 1.5rem;
 }
@@ -137,6 +139,7 @@ input[type='submit']:hover {
 }
 
 input[type='text'],
+textarea,
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -152,9 +155,30 @@ select {
 }
 
 input[type='text']:focus,
+textarea:focus,
 select:focus {
   border-color: #9b4dca;
   outline: 0;
+}
+
+textarea {
+  height: auto;
+  min-height: 12rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.fulfillment-form textarea {
+  /* Deux lignes au départ ; largeur et hauteur ajustables depuis le coin inférieur droit. */
+  height: calc(3.2em + 1.4rem);
+  min-height: calc(3.2em + 1.4rem);
+  max-height: none;
+  resize: both;
+  overflow-y: auto;
+}
+
+.exercise-label strong {
+  font-weight: 700;
 }
 
 select {
