@@ -1,4 +1,4 @@
-class FieldsController < Parent_Controller
+class FieldsController < ParentController
   get '/exercises/:form_id/fields' do
     @form = find_form!
     halt 404, 'Exercice introuvable.' unless @form.building?

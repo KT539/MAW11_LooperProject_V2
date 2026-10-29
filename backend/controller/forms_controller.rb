@@ -1,4 +1,4 @@
-class FormsController < Parent_Controller
+class FormsController < ParentController
   get '/exercises' do
     @forms_by_status = Form.all.group_by { |form| form.status }
     erb :'exercises.html'
@@ -23,6 +23,28 @@ class FormsController < Parent_Controller
 
   get '/exercises/answering.html' do
     redirect '/exercises/answering', 301
+  end
+
+  # Conserve les liens présents dans les onglets ouverts avant le renommage.
+  get '/exercises/:form_id/input' do
+    redirect "/exercises/#{params[:form_id]}/fulfillments/new", 301
+  end
+
+  get '/exercises/:form_id/fulfillments/new' do
+    @form = find_form!
+    halt 404, 'Exercice indisponible pour les réponses.' unless @form.answering?
+
+    @form_id = @form.id
+    @fields = @form.fields
+    erb :'fulfillments_new.html'
+  end
+
+  post '/exercises/:form_id/fulfillments' do
+    form = find_form!
+    halt 404, 'Exercice indisponible pour les réponses.' unless form.answering?
+
+    Answer.create_for_form(form.id, params['answers'] || {})
+    redirect '/'
   end
 
   get '/exercises/:form_id/results' do
