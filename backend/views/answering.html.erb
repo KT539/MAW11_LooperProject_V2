@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>ExerciseLooper</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+<header class="heading answering">
+  <section class="container">
+    <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
+  </section>
+</header>
+
+<main class="container">
+  <ul class="ansering-list">
+    <% @answering_forms.each do |form| %>
+      <li class="row">
+        <div class="column card">
+          <div class="title"><%= h(form.name) %></div>
+          <a class="button" href="/exercises/<%= h(form.id) %>/fulfillments/new">Take it</a>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</main>
+</body>
+</html>
