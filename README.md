@@ -113,4 +113,4 @@ L'application suit une architecture **MVC** :
 
 ## État du projet
 
-Le projet est **en cours de développement**, et ne dispose pas encore de pré-release.
+Le projet est **en cours de développement**. La prérelease 0.0.2 a été publiée le 01.11.2026.
