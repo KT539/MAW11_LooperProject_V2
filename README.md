@@ -74,12 +74,14 @@ Depuis la racine du projet :
 rerun rackup
 ```
 
+Le fichier `.rerun` lance automatiquement `rackup` avec Bundler pour utiliser les versions de `Gemfile.lock`.
+
 L'application est accessible par défaut à l'adresse : **http://localhost:9292**.
 
 Il est également possible de la lancer sans rechargement automatique :
 
 ```bash
-rackup
+bundle exec rackup
 ```
 
 ## Structure du projet

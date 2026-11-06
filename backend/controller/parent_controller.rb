@@ -3,6 +3,19 @@ class ParentController < Sinatra::Base
   set :static, false
   set :show_exceptions, false
 
+  before do
+    path = request.path_info
+    next if path.start_with?('/assets/')
+
+    clean_path = path.gsub(%r{\.[^/]*\z}, '')
+    next if clean_path == path
+
+    clean_path = '/' if clean_path.empty? || clean_path == '/index'
+    clean_path += "?#{request.query_string}" unless request.query_string.empty?
+
+    redirect clean_path, (request.get? || request.head? ? 301 : 308)
+  end
+
   error ValidationError do
     content_type :text
     status 422
