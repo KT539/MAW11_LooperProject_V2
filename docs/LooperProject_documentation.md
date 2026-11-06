@@ -156,6 +156,7 @@ ExerciseLooper/
 │   ├── db/db_create.sql         # Script de création de la base
 │   └── project_management/      # Documents de gestion de projet
 ├── src/assets/                  # CSS, logo, images et polices
+├── tests/                       # Tests de validation de données
 ├── config.ru                    # Point d'entrée Rack
 ├── Gemfile                      # Dépendances
 └── README.md                    # Présentation et commandes rapides
@@ -259,7 +260,7 @@ Vue ERB → HTML → navigateur
 ```
 
 
-## 8. Référence des routes HTTP
+### 8. Référence des routes HTTP
 
 | Méthode | Route | Contrôleur | Effet |
 |---|---|---|---|
@@ -283,3 +284,32 @@ Vue ERB → HTML → navigateur
 Des redirections HTTP permettent de gérer certaines anciennes URL (notamment `/index.html`, `/exercises.html`, `/exercises/new.html`, `/exercises/answering.html`, `/exercises/:form_id/input`, `/exercises/:form_id/fields.html` et `/exercises/:form_id/results.html`) en les renvoyant vers les URL actuelles.
 
 
+### 9. Tests unitaires et tests d'intégration
+
+**Tests de validation des données**
+
+Le projet utilise des tests unitaires avec Minitest afin de vérifier que les données transmises aux modèles respectent les règles de validation définies par l'application. Les validations sont testées indépendamment de la base de données, afin de vérifier le comportement des modèles sans requêtes SQL.
+
+Les tests couvrent principalement trois modèles suivants :
+
+- Form : vérification du titre de l'exercice (non vide, 30 caractères maximum) et de la validité de son statut.  
+  
+- Field : vérification du libellé du champ (non vide, 50 caractères maximum) et du type de valeur autorisé.
+
+- Answer : vérification du format des réponses, de leur correspondance avec les champs de l'exercice et de leur longueur (250 caractères maximum).
+
+Les tests vérifient également certains comportements des modèles, comme la conversion des valeurs nil en chaînes vides et la distinction entre les réponses vides et les réponses dépassant 100 caractères. Lorsqu'une donnée ne respecte pas les règles définies, le modèle déclenche une ValidationError. Les tests permettent ainsi de s'assurer que les données invalides sont correctement rejetées.
+
+**Exécution des tests :**
+
+Les tests peuvent être exécutés avec les commandes suivantes depuis la racine du projet :
+
+```
+bundle exec ruby -Itest tests/form_tests.
+```  
+```
+bundle exec ruby -Itest tests/field_tests.
+```  
+```
+bundle exec ruby -Itest tests/answer_tests.
+```
