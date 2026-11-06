@@ -18,11 +18,17 @@ class Form
     row ? Form.new(row) : nil
   end
 
-  def self.create(name, status = 'Building')
+  def self.validate!(name, status)
     name = name.to_s.strip
+
     raise ValidationError, 'Veuillez saisir un titre.' if name.empty?
     raise ValidationError, 'Le titre ne doit pas dépasser 30 caractères.' if name.length > 30
     raise ValidationError, 'Statut invalide.' unless %w[Building Answering Closed].include?(status)
+  end
+
+  def self.create(name, status = 'Building')
+    name = name.to_s.strip
+    validate!(name, status)
 
     DB.prepare('INSERT INTO forms (name, status) VALUES (?, ?)').execute(name, status)
     Form.new('id' => DB.last_id, 'name' => name, 'status' => status, 'fields_count' => 0)
