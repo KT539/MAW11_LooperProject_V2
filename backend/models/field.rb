@@ -19,6 +19,9 @@ class Field
   end
 
   def self.validate!(label, type)
+    label = label.to_s.strip
+    type = type.to_s.strip
+
     raise ValidationError, 'Veuillez saisir un libellé.' if label.empty?
     raise ValidationError, 'Le libellé ne doit pas dépasser 50 caractères.' if label.length > 50
     raise ValidationError, 'Type de valeur invalide.' unless FIELD_TYPES.include?(type)
