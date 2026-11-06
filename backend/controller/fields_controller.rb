@@ -8,10 +8,6 @@ class FieldsController < ParentController
     erb :'fields.html'
   end
 
-  get '/exercises/:form_id/fields.html' do
-    redirect "/exercises/#{params[:form_id]}/fields", 301
-  end
-
   post '/exercises/:form_id/fields' do
     form = find_form!
     label = params.dig('field', 'label')
