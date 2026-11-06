@@ -19,7 +19,7 @@ class ParentController < Sinatra::Base
   error ValidationError do
     content_type :text
     status 422
-    env['sinatra.error'].message
+    erb :'error422.html'
   end
 
   def h(value)
@@ -43,4 +43,15 @@ class ParentController < Sinatra::Base
     halt 404, 'Champ introuvable.' unless field
     field
   end
+
+  not_found do
+    status 404
+    erb :'error404.html'
+  end
+
+  error 500 do
+    status 500
+    erb :'error500.html'
+  end
 end
+

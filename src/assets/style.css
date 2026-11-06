@@ -419,7 +419,7 @@ header {
 header.answering { background-color: rgba(155, 77, 202, 1); }
 header.managing  { background-color: rgba(224, 164, 88, 1); }
 header.results   { background-color: rgba(65, 157, 120, 1); }
-
+header.error     { background-color: rgba(20, 200, 255, 1); }
 
 /* 7. Liste « Take an exercise »
    ========================================================================== */
