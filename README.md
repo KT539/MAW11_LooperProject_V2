@@ -100,6 +100,7 @@ bundle exec rackup
 │   └── project_management/  # Documents de gestion de projet
 ├── src/
 │   └── assets/              # CSS, images et polices
+├── tests/                   # Tests de validation de données
 ├── config.ru                # Point d'entrée Rack de l'application
 ├── Gemfile                  # Dépendances Ruby
 └── README.md
