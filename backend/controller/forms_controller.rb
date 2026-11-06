@@ -4,25 +4,13 @@ class FormsController < ParentController
     erb :'exercises.html'
   end
 
-  get '/exercises.html' do
-    redirect '/exercises', 301
-  end
-
   get '/exercises/new' do
     erb :'new.html'
-  end
-
-  get '/exercises/new.html' do
-    redirect '/exercises/new', 301
   end
 
   get '/exercises/answering' do
     @answering_forms = Form.all.select { |form| form.answering? }
     erb :'answering.html'
-  end
-
-  get '/exercises/answering.html' do
-    redirect '/exercises/answering', 301
   end
 
   # Conserve les liens présents dans les onglets ouverts avant le renommage.
@@ -53,10 +41,6 @@ class FormsController < ParentController
     @fields = @form.fields
     @result_rows = @form.result_rows
     erb :'results.html'
-  end
-
-  get '/exercises/:form_id/results.html' do
-    redirect "/exercises/#{params[:form_id]}/results", 301
   end
 
   post '/traitement' do
