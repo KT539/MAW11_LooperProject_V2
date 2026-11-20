@@ -506,3 +506,7 @@ button.icon-button:focus {
 button.icon-delete:hover {
   color: rgba(244, 88, 102, 1);
 }
+
+.img-error {
+  border-image: 90%;
+}
