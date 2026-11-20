@@ -305,11 +305,11 @@ Les tests vérifient également certains comportements des modèles, comme la co
 Les tests peuvent être exécutés avec les commandes suivantes depuis la racine du projet :
 
 ```
-bundle exec ruby -Itest tests/form_tests.
+bundle exec ruby -Itest tests/form_tests.rb
 ```  
 ```
-bundle exec ruby -Itest tests/field_tests.
+bundle exec ruby -Itest tests/field_tests.rb
 ```  
 ```
-bundle exec ruby -Itest tests/answer_tests.
+bundle exec ruby -Itest tests/answer_tests.rb
 ```
