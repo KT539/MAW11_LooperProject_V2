@@ -294,6 +294,33 @@ table.records td:last-child {
   color: #9b4dca;
 }
 
+.attempt-detail {
+  padding-top: 1rem;
+}
+
+.attempt-detail h1 {
+  font-size: clamp(2.8rem, 6.8vw, 5.4rem);
+  margin-bottom: 2.4rem;
+}
+
+.attempt-answers {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.attempt-answers dt {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.attempt-answers dd {
+  margin: .9rem 0 1.8rem clamp(1.6rem, 5vw, 4rem);
+}
+
+.attempt-answer-content {
+  white-space: pre-wrap;
+}
+
 .results-matrix .answer-icon {
   font-size: 2rem;
   color: #419d78;
@@ -380,6 +407,11 @@ header.heading .exercise-label a {
 
 header.heading .exercise-label a:hover {
   color: #606c76;
+}
+
+header.heading .exercise-label .attempt-results-link:is(:hover, :focus-visible) {
+  color: inherit;
+  text-decoration: underline;
 }
 
 header.dashboard .container {

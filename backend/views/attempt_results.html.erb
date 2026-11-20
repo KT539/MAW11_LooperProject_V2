@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Réponses de la tentative — <%= h(@form.name) %></title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+<header class="heading results">
+  <section class="container">
+    <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
+    <span class="exercise-label">Exercise: <a class="attempt-results-link" href="/exercises/<%= h(@form_id) %>/results" title="Retour aux résultats"><%= h(@form.name) %></a></span>
+  </section>
+</header>
+
+<main class="container attempt-detail">
+  <h1>
+    <% if @attempt[:date] %>
+      <%= h(@attempt[:date].strftime('%Y-%m-%d %H:%M:%S UTC')) %>
+    <% else %>
+      Date non renseignée
+    <% end %>
+  </h1>
+
+  <dl class="attempt-answers">
+    <% @fields.each do |field| %>
+      <% answer = @attempt[:answers][field.id] %>
+      <dt><%= h(field.label) %></dt>
+      <% if answer.nil? || answer.empty? %>
+        <dd><em>Aucune réponse</em></dd>
+      <% else %>
+        <dd class="attempt-answer-content"><%= h(answer.answer_content) %></dd>
+      <% end %>
+    <% end %>
+  </dl>
+</main>
+</body>
+</html>

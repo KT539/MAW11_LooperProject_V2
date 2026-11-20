@@ -43,6 +43,19 @@ class FormsController < ParentController
     erb :'results.html'
   end
 
+  get '/exercises/:form_id/results/:attempt_id' do
+    @form = find_form!
+    attempt_id = params[:attempt_id].to_s
+    halt 404, 'Tentative introuvable.' unless attempt_id.match?(/\A\d+\z/)
+
+    @attempt = @form.result_rows.find { |row| row[:id].to_s == attempt_id }
+    halt 404, 'Tentative introuvable.' unless @attempt
+
+    @form_id = @form.id
+    @fields = @form.fields
+    erb :'attempt_results.html'
+  end
+
   post '/traitement' do
     title = params.dig('exercise', 'title')
     form = Form.create(title)

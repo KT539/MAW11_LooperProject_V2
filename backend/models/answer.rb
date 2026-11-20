@@ -53,9 +53,12 @@ class Answer
     answers_by_date.each do |date, answers|
       answers_by_field = answers.group_by { |answer| answer.field_id }
       answers_by_field.values.map(&:length).max.times do |index|
+        attempt_answers = answers_by_field.transform_values { |values| values[index] }
         result_rows << {
+          # Une réponse de cette ligne fournit un identifiant unique au lien.
+          id: attempt_answers.values.compact.map(&:id).min,
           date: date,
-          answers: answers_by_field.transform_values { |values| values[index] }
+          answers: attempt_answers
         }
       end
     end

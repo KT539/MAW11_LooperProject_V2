@@ -33,11 +33,9 @@
       <% @result_rows.each do |row| %>
         <tr>
           <th scope="row" class="take-date">
-            <% if row[:date] %>
-              <%= h(row[:date].strftime('%Y-%m-%d %H:%M:%S UTC')) %><br/>
-            <% else %>
-              Date non renseignée
-            <% end %>
+            <a href="/exercises/<%= h(@form_id) %>/results/<%= h(row[:id]) %>">
+              <%= h(row[:date].strftime('%Y-%m-%d %H:%M:%S UTC')) %>
+            </a>
           </th>
           <% @fields.each do |field| %>
             <% answer = row[:answers][field.id] %>
