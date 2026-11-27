@@ -22,7 +22,9 @@
       <tr>
         <th scope="col">Take</th>
         <% @fields.each do |field| %>
-          <th scope="col"><%= h(field.label) %></th>
+          <th scope="col">
+            <a href="/exercises/<%= h(@form_id) %>/results/fields/<%= h(field.id) %>"><%= h(field.label) %></a>
+          </th>
         <% end %>
       </tr>
       </thead>
@@ -33,11 +35,7 @@
       <% @result_rows.each do |row| %>
         <tr>
           <th scope="row" class="take-date">
-            <% if row[:date] %>
-              <%= h(row[:date].strftime('%Y-%m-%d %H:%M:%S UTC')) %><br/>
-            <% else %>
-              Date non renseignée
-            <% end %>
+            <a href="/exercises/<%= h(@form_id) %>/results/<%= h(row[:id]) %>"><%= h(row[:date]&.strftime('%Y-%m-%d %H:%M:%S UTC') || 'Date non renseignée') %></a>
           </th>
           <% @fields.each do |field| %>
             <% answer = row[:answers][field.id] %>

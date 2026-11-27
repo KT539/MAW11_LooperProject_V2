@@ -294,6 +294,47 @@ table.records td:last-child {
   color: #9b4dca;
 }
 
+.field-results-header .container,
+.field-results {
+  max-width: none;
+  padding-inline: 1.6rem;
+}
+
+.field-results {
+  padding-top: .5rem;
+}
+
+.field-results h1 {
+  font-size: clamp(2.8rem, 6.8vw, 5.4rem);
+  margin-bottom: 2.4rem;
+  overflow-wrap: anywhere;
+}
+
+.field-results-table thead th:first-child {
+  width: 83%;
+}
+
+.field-results-table th,
+.field-results-table td {
+  padding-block: 1.4rem;
+  vertical-align: top;
+}
+
+.field-results-table tbody th {
+  font-weight: normal;
+}
+
+.field-results-table td {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 40rem) {
+  .field-results-table thead th:first-child {
+    width: 48%;
+  }
+}
+
 .attempt-detail {
   padding-top: 1rem;
 }
