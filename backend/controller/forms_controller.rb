@@ -43,6 +43,17 @@ class FormsController < ParentController
     erb :'results.html'
   end
 
+  get '/exercises/:form_id/results/fields/:field_id' do
+    @form = find_form!
+    @field = find_field!(@form)
+    @form_id = @form.id
+    @answer_rows = @form.result_rows.filter_map do |attempt|
+      answer = attempt[:answers][@field.id]
+      { attempt_id: attempt[:id], answer: answer } if answer
+    end
+    erb :'field_results.html'
+  end
+
   get '/exercises/:form_id/results/:attempt_id' do
     @form = find_form!
     attempt_id = params[:attempt_id].to_s
