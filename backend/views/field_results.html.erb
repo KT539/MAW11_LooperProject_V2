@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Réponses — <%= h(@field.label) %></title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+<header class="heading results field-results-header">
+  <section class="container">
+    <a href="/"><img src="/assets/logo.png" alt="Accueil" /></a>
+    <span class="exercise-label">Exercise: <a class="attempt-results-link" href="/exercises/<%= h(@form_id) %>/results" title="Retour aux résultats"><%= h(@form.name) %></a></span>
+  </section>
+</header>
+
+<main class="container field-results">
+  <h1><%= h(@field.label) %></h1>
+
+  <% if @answer_rows.empty? %>
+    <p>Aucune réponse enregistrée pour cette question.</p>
+  <% else %>
+    <table class="field-results-table" aria-label="Réponses à la question">
+      <thead>
+        <tr>
+          <th scope="col">Take</th>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @answer_rows.each do |row| %>
+          <% answer = row[:answer] %>
+          <tr>
+            <th scope="row">
+              <a href="/exercises/<%= h(@form_id) %>/results/<%= h(row[:attempt_id]) %>"><%= h(answer.answer_datetime.strftime('%Y-%m-%d %H:%M:%S UTC')) %></a>
+            </th>
+            <td><%= h(answer.answer_content) unless answer.empty? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</main>
+</body>
+</html>
